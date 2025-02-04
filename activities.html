@@ -1,77 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Activities</title>
-    <link rel="stylesheet" href="css/activities.css" />
-  </head>
-  <body>
-    <div id="activityquestion"><b>What are we doing after?</b></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activities</title>
+  <link rel="stylesheet" href="css/activities.css" />
+</head>
+<body>
+  <div id="activityquestion"><b>Was machen wir nach dem essen???</b></div>
+
+  <form action="https://formsubmit.co/gerry.sroy12310.com@gmail.com" method="POST" id="finalForm">
     <div class="activities-selection">
       <div class="activity-item">
-        <img src="activities/aquarium.jpeg" alt="aquarium" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="aquarium"
-          />aquarium</label
-        >
+        <img src="activities/gameorama.jpg" alt="gameorama" />
+        <label><input type="checkbox" name="activities" value="gameorama" />gameorama</label>
       </div>
       <div class="activity-item">
-        <img src="activities/arcade.jpeg" alt="arcade" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="arcade"
-          />arcade</label
-        >
+        <img src="activities/billiard.jpeg" alt="billiard" />
+        <label><input type="checkbox" name="activities" value="billiard" />billiard</label>
       </div>
       <div class="activity-item">
-        <img src="activities/cinema.jpeg" alt="cinema" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="cinema"
-          />cinema</label
-        >
+        <img src="activities/bowling.jpeg" alt="bowling" />
+        <label><input type="checkbox" name="activities" value="bowling" />bowling</label>
       </div>
       <div class="activity-item">
-        <img src="activities/keramika.jpeg" alt="ceramics" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="ceramics"
-          />ceramics</label
-        >
+        <img src="activities/home.jpeg" alt="home" />
+        <label><input type="checkbox" name="activities" value="home" />home</label>
       </div>
       <div class="activity-item">
-        <img src="activities/kunsthalle.jpeg" alt="kunsthalle" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="kunsthalle"
-          />exhibition</label
-        >
-      </div>
-      <div class="activity-item">
-        <img src="activities/park.jpeg" alt="park.jpeg" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="park.jpeg"
-          />park</label
-        >
+        <img src="activities/schiffsrundfahrt.jpg" alt="schiffsrundfahrt" />
+        <label><input type="checkbox" name="activities" value="schiffsrundfahrt" />schiffsrundfahrt</label>
       </div>
     </div>
-    <button class="button" onclick="location.href='lastpage.html'">
-      Last page
+
+    <!-- Hidden inputs to submit all stored data -->
+    <input type="hidden" name="selectedDate" id="selectedDate">
+    <input type="hidden" name="foodChoice" id="foodChoice">
+    <input type="hidden" name="selectedActivities" id="selectedActivities">
+
+    <!-- Redirect to lastpage.html after submission -->
+    <input type="hidden" name="_next" value="finalPage.html">
+
+    <button class="button" type="submit" onclick="saveAndRedirect(event)">
+      Weiter
     </button>
-  </body>
+  </form>
+
+  <script>
+    function saveAndRedirect(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Retrieve stored data (date & food)
+      let selectedDate = localStorage.getItem("selectedDate") || "Not selected";
+      let foodChoice = localStorage.getItem("foodChoice") || "Not selected";
+
+      // Get selected activities
+      let selectedActivities = [];
+      document.querySelectorAll('input[name="activities"]:checked').forEach((checkbox) => {
+        selectedActivities.push(checkbox.value);
+      });
+
+      // Save selected activities in localStorage (optional)
+      localStorage.setItem("selectedActivities", JSON.stringify(selectedActivities));
+
+      // Save data to localStorage for next page
+      localStorage.setItem("selectedDate", selectedDate);
+      localStorage.setItem("foodChoice", foodChoice);
+
+      // Redirect to the final page
+      window.location.href = "lastpage.html"; // Change to your final page URL
+    }
+  </script>
+</body>
 </html>

@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Thank You</title>
     <link rel="stylesheet" href="css/flower.css" />
   </head>
   <body>
-    <div id="thankyou"><b>Thank you for being my girlfriend</b></div>
+    <div id="thankyou">
+      <b>Thank you for being my girlfriend and the best girlfriend there is 🥺💖</b>
+    </div>
+
     <div class="flower">
       <div class="f-wrapper">
         <div class="flower__line"></div>
@@ -19,9 +22,7 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--yellow"
-          ></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--yellow"></div>
         </div>
       </div>
 
@@ -35,9 +36,7 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--pink"
-          ></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--pink"></div>
         </div>
       </div>
 
@@ -51,12 +50,41 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--purple"
-          ></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--purple"></div>
         </div>
       </div>
       <div class="flower__glass"></div>
     </div>
+
+    <button class="button" onclick="saveAndSubmit()">Fertig</button>
+
+    <!-- Form to send data -->
+    <form action="https://formsubmit.co/gerry.sroy12310.com@gmail.com" method="POST" id="finalForm">
+      <input type="hidden" name="selectedDate" id="selectedDate">
+      <input type="hidden" name="foodChoice" id="foodChoice">
+      <input type="hidden" name="selectedActivities" id="selectedActivities">
+
+      <!-- Redirect to lastpage.html after submission -->
+      <input type="hidden" name="_next" value="lastpage.html">
+    </form>
+
+
+
+    <script>
+      function saveAndSubmit() {
+        // Retrieve the stored data from localStorage
+        let selectedDate = localStorage.getItem("selectedDate") || "Not selected";
+        let foodChoice = localStorage.getItem("foodChoice") || "Not selected";
+        let selectedActivities = localStorage.getItem("selectedActivities") || "Not selected";
+
+        // Set the hidden form fields with the retrieved data
+        document.getElementById("selectedDate").value = selectedDate;
+        document.getElementById("foodChoice").value = foodChoice;
+        document.getElementById("selectedActivities").value = selectedActivities;
+
+        // Submit the form when the button is clicked
+        document.getElementById("finalForm").submit();
+      }
+    </script>
   </body>
 </html>
